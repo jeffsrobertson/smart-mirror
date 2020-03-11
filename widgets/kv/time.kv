@@ -1,0 +1,45 @@
+<TimeWidget>:
+    #: import WIDGET_FONT __main__.WIDGET_FONT
+
+    size_hint: (None,None)
+    date_block: date_block
+    seconds_block: seconds_block
+    location_block: location_block
+    Label:
+        id: time
+        font_name: WIDGET_FONT
+        text: root.hour+':'+root.minute
+        font_size: .25*root.parent_height
+        size_hint: (None,None)
+        size: self.texture_size
+        x: 0
+        y: 0
+    Label:
+        id: date_block
+        font_name: WIDGET_FONT
+        text: root.month+' '+root.day+', '+root.year
+        font_size: .25*time.font_size
+        size_hint: (None,None)
+        size: self.texture_size
+        x: 0
+        y: time.font_size
+    Label:
+        id: seconds_block
+        font_name: WIDGET_FONT
+        text: root.second
+        font_size: .6*time.font_size
+        size_hint: (None,None)
+        size: self.texture_size
+        x: time.right
+        y: time.font_size-self.font_size
+    Label:
+        id: location_block
+        font_name: WIDGET_FONT
+        text: root.location
+        font_size: .25*time.font_size
+        size_hint: (None,None)
+        size: self.texture_size
+        x: 0
+        top: time.y-.05*time.height
+
+

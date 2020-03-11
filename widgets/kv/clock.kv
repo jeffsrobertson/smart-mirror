@@ -1,0 +1,13 @@
+<ClockWidget>:
+    size_hint: None,None
+    width: .2*app.root.width
+    height: self.width
+    clock_layout: clock_layout
+    RelativeLayout:
+        id: clock_layout
+        size: root.size
+        canvas:
+            Line:
+                circle: (.5*root.width,.5*root.height,.5*root.width)
+                close: True
+                width: .01*root.width

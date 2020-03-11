@@ -1,0 +1,6 @@
+{
+    "custombuttons.png": {
+        "normal": [464, 0, 924, 144],
+        "pressed": [0, 0, 463, 144]
+    }
+}

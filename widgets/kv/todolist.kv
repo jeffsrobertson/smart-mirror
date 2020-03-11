@@ -1,0 +1,42 @@
+<ToDoListWidget>:
+    to_do_layout: to_do_layout
+    size_hint: (None,None)
+    height: title.height + to_do_layout.height
+    width: max(title.width,to_do_layout.width)
+    on_touch_down: print('size = {}. box size = {}. title size = {}.'.format(self.size,to_do_layout.size,title.size))
+    Label:
+        id: title
+        text: root.title
+        bold: True
+        pos_hint: {'x':0,'top':1}
+        size_hint: (None,None)
+        font_size: .05*app.root.width
+        size: self.texture_size
+    BoxLayout:
+        id: to_do_layout
+        orientation: 'vertical'
+        width: self.minimum_width
+        height: self.minimum_height
+        top: title.y
+        pos_hint: {'x':0}
+
+<ToDoListItem>:
+    size_hint: (None,None)
+    width: check.width + lbl.width
+    height: .05*app.root.height
+    on_touch_down: print('item size = ',self.size)
+    CheckBox:
+        id: check
+        size_hint: (None,1)
+        pos_hint: {'x':0,'center_y':.5}
+        background_checkbox_normal:  'images/config_checkbox_norm.png'
+        background_checkbox_down: 'images/config_checkbox_active.png'
+        active: True if root.checked else False
+    Label:
+        id: lbl
+        text: root.text
+        font_size: root.height
+        size_hint: (None,None)
+        size: self.texture_size
+        x: check.right
+        pos_hint: {'center_y':.5}

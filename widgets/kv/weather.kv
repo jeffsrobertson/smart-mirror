@@ -1,0 +1,108 @@
+<WeatherWidget>:
+    size_hint: (None,None)
+    temperature_block: temp
+    icon_block: weather_icon
+    description_block: weather_desc
+    location_block: location
+    forecast_block: forecast_table
+    forecast_header: forecast_header
+    Label:
+        id: temp
+        font_name: WIDGET_FONT
+        text: root.temperature
+        font_size:  .25*root.parent_height
+        size_hint: (None,None)
+        size: self.texture_size
+        x: 0
+        y: 0
+    Image:
+        id: weather_icon
+        allow_stretch: True
+        source: root.current_weather_icon
+        size_hint: (None,None)
+        height: .8*temp.font_size
+        width: self.height
+        x: temp.x-self.width
+        y: temp.y + temp.font_size - self.height
+    Label:
+        id: weather_desc
+        font_name: WIDGET_FONT
+        text: root.description
+        font_size: .15*temp.font_size
+        size_hint: (None,None)
+        size: self.texture_size
+        y: weather_icon.y - self.height
+        x: weather_icon.center_x - .5*self.width
+    Label:
+        id: location
+        font_name: WIDGET_FONT
+        text: root.city_name
+        font_size: .25*temp.font_size
+        size_hint: (None,None)
+        size: self.texture_size
+        y: (temp.y - self.height)+.5*self.height
+        x: 0
+    BoxLayout:
+        id: forecast_table
+        orientation: 'vertical'
+        size_hint: (None,None)
+        width: weather_icon.width + temp.width
+        height: self.minimum_height
+        spacing: .03*temp.font_size
+        y: location.y - self.height
+        x: weather_icon.x
+        ForecastRow:
+            id: forecast_header
+            canvas:
+                Color:
+                    rgba: 1,1,1,1
+                Line:
+                    points: [self.x,self.y,self.x+self.width,self.y]
+                    width: .0075*temp.font_size
+                    joint: 'none'
+            height: .15*temp.font_size
+            day: 'Day'
+            conditions: 'Conditions'
+            high_temp: 'High'
+            low_temp: 'Low'
+
+<ForecastRow>:
+    size_hint: (1,None)
+    id: row
+    Label:
+        id: day_label
+        text: root.day
+        size_hint: (None,None)
+        font_size: root.height
+        size: self.texture_size
+        pos_hint: {'x':0,'center_y':.5}
+    Image:
+        id: conditions_image
+        source: root.conditions_image
+        size_hint: (None,1)
+        width: self.height
+        allow_stretch: True
+        keep_ratio: False
+        pos_hint: {'center_x':.2,'center_y':.5}
+    Label:
+        id: conditions
+        text: root.conditions
+        size_hint: (None,None)
+        font_size: root.height
+        size: self.texture_size
+        pos_hint: {'center_y':.5}
+        x: conditions_image.right+.5*conditions_image.width
+    Label:
+        id: high_temp
+        text: root.high_temp
+        size_hint: (None,None)
+        font_size: root.height
+        size: self.texture_size
+        pos_hint: {'center_x':.7,'center_y':.5}
+    Label:
+        id: low_temp
+        text: root.low_temp
+        size_hint: (None,None)
+        font_size: root.height
+        size: self.texture_size
+        pos_hint: {'right':1,'center_y':.5}
